@@ -1,0 +1,23 @@
+package database;
+
+public class usuariosdb {
+	private String Usuario;
+	private String Password;
+	
+	
+	public String getUsuario() {
+	    return Usuario;
+	  }
+	public void setUsuario(String newUsuario) {
+		this.Usuario = newUsuario;
+		}
+	
+	
+	public String getPassword() {
+		return Password;
+	}
+	public void setPassword(String newPassword) {
+		this.Password = newPassword;
+	}
+	
+}

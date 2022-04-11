@@ -1,0 +1,110 @@
+package source;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JPasswordField;
+import javax.swing.JInternalFrame;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public class Register extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField txtRgUser;
+	private JPasswordField txtRgPassword2;
+	private JPasswordField txtRgPassword;
+	protected Login LoginRg;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Register frame = new Register();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Register() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 350, 457);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel TtlRegister = new JLabel("Registrarse");
+		TtlRegister.setHorizontalAlignment(SwingConstants.CENTER);
+		TtlRegister.setFont(new Font("Tahoma", Font.BOLD, 18));
+		TtlRegister.setBounds(94, 21, 147, 28);
+		contentPane.add(TtlRegister);
+		
+		JLabel TtlRgUser = new JLabel("Nombre de Usuario");
+		TtlRgUser.setHorizontalAlignment(SwingConstants.CENTER);
+		TtlRgUser.setFont(new Font("Tahoma", Font.BOLD, 14));
+		TtlRgUser.setBounds(86, 91, 163, 14);
+		contentPane.add(TtlRgUser);
+		
+		txtRgUser = new JTextField();
+		txtRgUser.setBounds(75, 125, 183, 20);
+		contentPane.add(txtRgUser);
+		txtRgUser.setColumns(10);
+		
+		JLabel TtlRgPassword = new JLabel("Contrase\u00F1a");
+		TtlRgPassword.setHorizontalAlignment(SwingConstants.CENTER);
+		TtlRgPassword.setFont(new Font("Tahoma", Font.BOLD, 14));
+		TtlRgPassword.setBounds(91, 166, 153, 14);
+		contentPane.add(TtlRgPassword);
+		
+		JLabel TtlRgPassword2 = new JLabel("Repetir contrase\u00F1a");
+		TtlRgPassword2.setFont(new Font("Tahoma", Font.BOLD, 14));
+		TtlRgPassword2.setHorizontalAlignment(SwingConstants.CENTER);
+		TtlRgPassword2.setBounds(98, 222, 138, 14);
+		contentPane.add(TtlRgPassword2);
+		
+		JButton btnRgRegister = new JButton("Registrarse");
+		btnRgRegister.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnRgRegister.setBounds(114, 294, 106, 41);
+		contentPane.add(btnRgRegister);
+		
+		txtRgPassword2 = new JPasswordField();
+		txtRgPassword2.setBounds(75, 247, 183, 20);
+		contentPane.add(txtRgPassword2);
+		
+		txtRgPassword = new JPasswordField();
+		txtRgPassword.setBounds(75, 191, 183, 20);
+		contentPane.add(txtRgPassword);
+		
+		JButton btnRgBack = new JButton("Volver");
+		btnRgBack.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.exit(EXIT_ON_CLOSE);
+				LoginRg = new Login();
+				LoginRg.setVisible(true);
+				
+			}
+		});
+		btnRgBack.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnRgBack.setBounds(0, 395, 89, 23);
+		contentPane.add(btnRgBack);
+	}
+}

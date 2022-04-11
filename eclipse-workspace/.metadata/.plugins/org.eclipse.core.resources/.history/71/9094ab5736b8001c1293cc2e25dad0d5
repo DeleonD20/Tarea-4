@@ -1,0 +1,27 @@
+package database;
+
+import java.sql.SQLException;
+
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
+
+public class dbInsert extends Conexion {
+	public boolean registrar(usuariosdb usr) {
+		PreparedStatement ps = null;
+		Connection con = getConexion();
+		String sql = "INSERT INTO Users (Usuario, Password) VALUES(?,?)";
+		
+		try {
+			ps = (PreparedStatement) con.prepareStatement(sql);
+			ps.setString(1, usr.getUsuario());
+			ps.setString(2, usr.getPassword());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+			return false;
+		}
+		
+	}
+
+}

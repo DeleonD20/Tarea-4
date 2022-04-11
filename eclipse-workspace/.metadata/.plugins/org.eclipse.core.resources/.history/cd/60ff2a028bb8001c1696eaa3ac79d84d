@@ -1,0 +1,171 @@
+package source;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.JTextField;
+import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.SystemColor;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
+
+import database.Conexion;
+
+import java.awt.FlowLayout;
+import javax.swing.BoxLayout;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JToolBar;
+import javax.swing.JDesktopPane;
+import javax.swing.JInternalFrame;
+import javax.swing.JTextPane;
+import javax.swing.JSlider;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Vector;
+import java.awt.event.ActionEvent;
+import java.awt.Color;
+import javax.swing.ListSelectionModel;
+import javax.swing.UIManager;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+
+public class Principal extends JFrame {
+	private JTable table;
+
+	
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Principal frame = new Principal();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Principal() {
+		
+		table = new JTable();
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setSurrendersFocusOnKeystroke(true);
+		table.setForeground(Color.BLACK);
+		table.setCellSelectionEnabled(true);
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				
+			}
+		));
+		table.setBackground(Color.WHITE);
+		table.setColumnSelectionAllowed(true);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnNewMenu = new JMenu("Salir");
+		mnNewMenu.setHorizontalAlignment(SwingConstants.CENTER);
+		mnNewMenu.setBackground(Color.WHITE);
+		mnNewMenu.setFont(new Font("Tahoma", Font.BOLD, 12));
+		menuBar.add(mnNewMenu);
+		
+		JButton btnNewButton = new JButton("Cerrar seccion");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		mnNewMenu.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Salir");
+		mnNewMenu.add(btnNewButton_1);
+		
+		JMenu mnNewMenu_1 = new JMenu("Tabla");
+		mnNewMenu_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		mnNewMenu_1.setHorizontalAlignment(SwingConstants.CENTER);
+		menuBar.add(mnNewMenu_1);
+		
+		JButton btnNewButton_2 = new JButton("Agregar");
+		mnNewMenu_1.add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("Eliminar");
+		mnNewMenu_1.add(btnNewButton_3);
+		
+		JButton btnNewButton_4 = new JButton("Editar");
+		mnNewMenu_1.add(btnNewButton_4);
+		
+		Conexion con = new Conexion();
+		Connection conexion = con.getConexion();
+		
+		String sql = "SELECT * FROM Users";
+		Statement st;
+		
+		DefaultTableModel model = new DefaultTableModel();
+		model.addColumn("Usuario");
+		model.addColumn("Password");
+		model.addColumn("Nombre");
+		model.addColumn("Apellido");
+		model.addColumn("Email");
+		
+		table.setModel(model);
+		GroupLayout groupLayout = new GroupLayout(getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(table, GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
+					.addContainerGap())
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(table, GroupLayout.PREFERRED_SIZE, 265, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		getContentPane().setLayout(groupLayout);
+		
+		String[] dato = new String[5];
+		
+		try {
+			st = conexion.createStatement();
+			ResultSet result = st.executeQuery(sql);
+			
+			while (result.next()) {
+				dato[0] = result.getString(1);
+				dato[1] = result.getString(2);
+				dato[2] = result.getString(3);
+				dato[3] = result.getString(4);
+				dato[4] = result.getString(5);
+				model.addRow(dato);
+			}
+			
+			
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+	}
+}

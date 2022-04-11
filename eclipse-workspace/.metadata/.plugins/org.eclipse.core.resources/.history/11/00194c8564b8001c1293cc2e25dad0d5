@@ -1,0 +1,28 @@
+package database;
+
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+import java.sql.Connection;
+
+public class Conexion {
+	private final String db = "Usuarios";
+	private final String user = "Usuario";
+	private final String password = "Password";
+	private final String url = "jdbc:mysql://localhost:3306/user=root&password=Ddcc.02246"+db;
+	
+	private Connection con = null;
+	
+	public Connection getConexion() {
+		try {
+			con = (Connection) DriverManager.getConnection(url, user, password);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return con;
+	}
+}
+
+ 

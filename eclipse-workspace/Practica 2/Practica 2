@@ -1,0 +1,14 @@
+package Practica2;
+
+public class Cuenta {
+	//Atributos
+	String titular;
+	String cantidad;
+	
+	public Cuenta(String titular){
+	}
+	public Cuenta(){
+		this.cantidad=cantidad;
+	}
+	
+}	

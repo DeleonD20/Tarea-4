@@ -1,0 +1,94 @@
+package source;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.JTextField;
+import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.SystemColor;
+
+public class Principal extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField txtUser;
+	private JTextField txtPassword;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Principal frame = new Principal();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Principal() {
+		setTitle("Registro de clientes");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 330, 361);
+		contentPane = new JPanel();
+		contentPane.setBackground(SystemColor.menu);
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Iniciar seccion");
+		lblNewLabel.setFont(new Font("Trebuchet MS", Font.BOLD, 24));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(64, 21, 186, 37);
+		contentPane.add(lblNewLabel);
+		
+		JLabel ttlUser = new JLabel("Usuario:");
+		ttlUser.setFont(new Font("Tahoma", Font.BOLD, 14));
+		ttlUser.setHorizontalAlignment(SwingConstants.CENTER);
+		ttlUser.setBounds(112, 69, 89, 20);
+		contentPane.add(ttlUser);
+		
+		txtUser = new JTextField();
+		txtUser.setBounds(58, 100, 197, 20);
+		contentPane.add(txtUser);
+		txtUser.setColumns(10);
+		
+		JLabel ttlPassword = new JLabel("Contrase\u00F1a:");
+		ttlPassword.setFont(new Font("Tahoma", Font.BOLD, 14));
+		ttlPassword.setHorizontalAlignment(SwingConstants.CENTER);
+		ttlPassword.setBounds(112, 131, 89, 20);
+		contentPane.add(ttlPassword);
+		
+		txtPassword = new JTextField();
+		txtPassword.setColumns(10);
+		txtPassword.setBounds(58, 156, 197, 20);
+		contentPane.add(txtPassword);
+		
+		JButton btnNewButton = new JButton("Registrarse");
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton.setBounds(100, 279, 114, 32);
+		contentPane.add(btnNewButton);
+		
+		JLabel lblNewLabel_2 = new JLabel("No tienes cuenta?");
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setBounds(98, 263, 118, 14);
+		contentPane.add(lblNewLabel_2);
+		
+		JButton btnNewButton_1 = new JButton("Ingresar");
+		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_1.setBounds(103, 199, 108, 32);
+		contentPane.add(btnNewButton_1);
+	}
+}
